@@ -20,7 +20,7 @@
 #import <Foundation/Foundation.h>
 #import "CDVAvailability.h"
 
-typedef enum {
+typedef NS_ENUM(NSUInteger, CDVCommandStatus)  {
     CDVCommandStatus_NO_RESULT = 0,
     CDVCommandStatus_OK,
     CDVCommandStatus_CLASS_NOT_FOUND_EXCEPTION,
@@ -31,7 +31,7 @@ typedef enum {
     CDVCommandStatus_INVALID_ACTION,
     CDVCommandStatus_JSON_EXCEPTION,
     CDVCommandStatus_ERROR
-} CDVCommandStatus;
+};
 
 @interface CDVPluginResult : NSObject {}
 
