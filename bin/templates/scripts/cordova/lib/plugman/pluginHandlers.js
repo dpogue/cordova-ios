@@ -63,7 +63,12 @@ const handlers = {
             if (fs.existsSync(destFile)) {
                 throw new CordovaError(`File already exists at destination "${destFile}" for resource file specified by plugin ${plugin.id} in iOS platform`);
             }
-            project.xcode.addResourceFile(path.join('Resources', target));
+            if (target.match(/\.xcassets\//)) {
+                const assetpath = target.match(/(.+\.xcassets)\//)[1];
+                project.xcode.addResourceFile(path.join('Resources', assetpath));
+            } else {
+                project.xcode.addResourceFile(path.join('Resources', target));
+            }
             const link = !!(options && options.link);
             copyFile(plugin.dir, src, project.projectDir, destFile, link);
         },
@@ -76,6 +81,9 @@ const handlers = {
             }
             const destFile = path.resolve(project.resources_dir, target);
 
+            if (target.match(/\.xcassets\//)) {
+                target = target.match(/(.+\.xcassets)\//)[1];
+            }
             project.xcode.removeResourceFile(path.join('Resources', target));
             shell.rm('-rf', destFile);
         }

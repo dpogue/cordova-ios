@@ -519,7 +519,10 @@ function updateFileResources (cordovaProject, locations) {
         let targetPath = path.join(project.resources_dir, target);
         targetPath = path.relative(cordovaProject.root, targetPath);
 
-        if (!fs.existsSync(targetPath)) {
+        if (target.match(/\.xcassets\//)) {
+            const assetpath = target.match(/(.+\.xcassets)\//)[1];
+            project.xcode.addResourceFile(assetpath);
+        } else if (!fs.existsSync(targetPath)) {
             project.xcode.addResourceFile(target);
         } else {
             events.emit('warn', `Overwriting existing resource file at ${targetPath}`);
@@ -555,6 +558,9 @@ function cleanFileResources (projectRoot, projectConfig, locations) {
             let targetPath = path.join(project.resources_dir, target);
             targetPath = path.relative(projectRoot, targetPath);
             const resfile = path.join('Resources', path.basename(targetPath));
+            if (resfile.match(/\.xcassets\//)) {
+                resfile = resfile.match(/(.+\.xcassets)\//)[1];
+            }
             project.xcode.removeResourceFile(resfile);
 
             resourceMap[targetPath] = null;
