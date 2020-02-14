@@ -89,4 +89,6 @@
 
 - (void)parseSettingsWithParser:(NSObject <NSXMLParserDelegate>*)delegate;
 
+- (void)showLaunchScreen:(BOOL)visible;
+
 @end
