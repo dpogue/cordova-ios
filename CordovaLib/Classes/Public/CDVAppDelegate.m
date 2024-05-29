@@ -18,6 +18,8 @@
  */
 
 #import <Cordova/CDVAppDelegate.h>
+#import <Cordova/CDVAvailability.h>
+#import <Cordova/CDVPlugin.h>
 
 @implementation CDVAppDelegate
 
@@ -68,6 +70,10 @@
         return NO;
     }
 
+    // all plugins will get the notification, and their handlers will be called
+    [[NSNotificationCenter defaultCenter] postNotificationName:CDVPluginHandleOpenURLNotification object:url userInfo:options];
+
+    // TODO: This should be deprecated and removed in Cordova iOS 8, since we're passing this data in the notification userInfo now
     NSMutableDictionary * openURLData = [[NSMutableDictionary alloc] init];
 
     [openURLData setValue:url forKey:@"url"];
@@ -80,8 +86,6 @@
         [openURLData setValue:options[UIApplicationOpenURLOptionsAnnotationKey] forKey:@"annotation"];
     }
 
-    // all plugins will get the notification, and their handlers will be called
-    [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:CDVPluginHandleOpenURLNotification object:url]];
     [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:CDVPluginHandleOpenURLWithAppSourceAndAnnotationNotification object:openURLData]];
 
     return YES;
