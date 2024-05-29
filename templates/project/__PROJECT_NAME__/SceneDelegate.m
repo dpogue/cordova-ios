@@ -17,8 +17,14 @@
  under the License.
  */
 
-#import <Cordova/CDVViewController.h>
+#import "SceneDelegate.h"
 
-@interface MainViewController : CDVViewController
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= 130000
+@interface SceneDelegate()
 
 @end
+
+@implementation SceneDelegate
+
+@end
+#endif

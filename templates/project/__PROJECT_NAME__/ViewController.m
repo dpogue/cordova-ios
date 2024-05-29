@@ -17,9 +17,9 @@
  under the License.
  */
 
-#import "MainViewController.h"
+#import "ViewController.h"
 
-@implementation MainViewController
+@implementation ViewController
 
 - (void)viewDidLoad
 {

@@ -16,11 +16,9 @@
  specific language governing permissions and limitations
  under the License.
  */
-//
-// Prefix header for all source files of the '__PROJECT_NAME__' target in the '__PROJECT_NAME__' project
-//
 
-#ifdef __OBJC__
-    #import <Foundation/Foundation.h>
-    #import <UIKit/UIKit.h>
-#endif
+#import <Cordova/Cordova.h>
+
+@interface ViewController : CDVViewController
+
+@end
