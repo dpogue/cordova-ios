@@ -79,6 +79,7 @@ describe('SwiftPackage', () => {
                 const podFile = fs.readFileSync(podFilePath, 'utf8');
                 expect(podFile).toContain('pod \'DummyObjCPodAlpha\'');
                 expect(podFile).not.toContain('pod \'DummyObjCPodBeta\'');
+                expect(podFile).toContain('pod \'DummyObjCPodGamma\'');
             });
     });
 

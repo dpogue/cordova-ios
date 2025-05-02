@@ -36,6 +36,7 @@
             <pods use-frameworks="true">
                 <pod name="DummyObjCPodAlpha" spec="1.0.0" nospm="false" />
                 <pod name="DummyObjCPodBeta" spec="1.0.0" nospm="true" />
+                <pod name="DummyObjCPodGamma" spec="1.0.0"/>
             </pods>
         </podspec>        
     </platform>
