@@ -30,12 +30,18 @@ let package = Package(
     products: [
         .library(name: "org.test.plugins.swiftpackagecocoapodplugin", targets: ["PackagePodPlugin"])
     ],
+    dependencies: [
+        .package(url: "https://github.com/apache/cordova-ios.git", branch: "master")
+    ],
     targets: [
         .target(
             name: "PackagePodPlugin",
-            path: "src",
-            sources: ["ios"]
+            dependencies: [
+                .product(name: "Cordova", package: "cordova-ios")
+            ],
+            path: "src/ios"
         )
     ]
 )
+
 

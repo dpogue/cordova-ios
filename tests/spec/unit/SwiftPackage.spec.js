@@ -77,8 +77,8 @@ describe('SwiftPackage', () => {
             .then(() => {
                 const podFilePath = path.join(iosPlatformTest, 'Podfile');
                 const podFile = fs.readFileSync(podFilePath, 'utf8');
-                expect(podFile).toContain('pod \'DummyObjCPod\'');
-                expect(podFile).not.toContain('pod \'DummyObjCPod2\'');
+                expect(podFile).toContain('pod \'DummyObjCPodAlpha\'');
+                expect(podFile).not.toContain('pod \'DummyObjCPodBeta\'');
             });
     });
 

@@ -36,11 +36,11 @@
  and used to implement plugin functionality.
 ***********************************************/
 
-// import Cordova
+import Cordova
 
-// @objc(PackagePodPlugin)
-// class PackagePodPlugin : CDVPlugin {
-//     override func pluginInitialize() {
-//         NSLog("Initialized Swift Package Pod Plugin");
-//     }
-// }
+@objc(PackagePodPlugin)
+class PackagePodPlugin : CDVPlugin {
+    override func pluginInitialize() {
+        NSLog("Initialized Swift Package Pod Plugin");
+    }
+}
