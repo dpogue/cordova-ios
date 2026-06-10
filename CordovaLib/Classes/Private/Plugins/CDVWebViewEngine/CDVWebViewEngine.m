@@ -194,6 +194,7 @@
     CDVWebViewUIDelegate* uiDelegate = [[CDVWebViewUIDelegate alloc] initWithViewController:self.viewController];
     uiDelegate.title = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleDisplayName"];
     uiDelegate.mediaPermissionGrantType = [self parsePermissionGrantType:[settings cordovaSettingForKey:@"MediaPermissionGrantType"]];
+    uiDelegate.geolocationPermissionGrantType = [self parsePermissionGrantType:[settings cordovaSettingForKey:@"GeolocationPermissionGrantType"]];
     uiDelegate.allowNewWindows = [settings cordovaBoolSettingForKey:@"AllowNewWindows" defaultValue:NO];
     self.uiDelegate = uiDelegate;
 
