@@ -271,10 +271,15 @@ describe('cordova/lib/run devicectl deployment', () => {
         }
 
         for (const operation of ['install', 'launch']) {
-            it(`propagates a ${operation} subprocess error`, async () => {
+            it(`wraps a ${operation} subprocess error in CordovaError with its cause`, async () => {
                 const error = new Error('Subprocess failed');
                 (operation === 'install' ? install : launch).and.returnValue({ error, status: null });
-                await expectAsync(run.deployToDevice(appPath, target, [])).toBeRejectedWith(error);
+                const deployment = run.deployToDevice(appPath, target, []);
+                await expectAsync(deployment).toBeRejectedWithError(CordovaError);
+                await deployment.catch(wrappedError => {
+                    expect(wrappedError.cause()).toBe(error);
+                    expect(wrappedError.message).toContain(`Failed to ${operation} app on device '${target}'.`);
+                });
                 if (operation === 'install') expect(launch).not.toHaveBeenCalled();
             });
         }
