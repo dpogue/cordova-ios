@@ -19,7 +19,7 @@
 
 const fs = require('node:fs');
 const path = require('node:path');
-// bplist-parser exposes read-only exports; spy on an isolated copy.
+// Since bplist-parser 0.5.0, exports are read-only; spy on an isolated copy.
 const bplist = { ...require('bplist-parser') };
 const plist = require('plist');
 const devicectl = require('devicectl');
